@@ -16,7 +16,7 @@ var myFetcher = function(req, res, next) {
       .then(showItems);
   }
 
-  const s = ['dk', 'pl', 'de'];
+  const s = ['dk', 'pl', 'de', 'en', 'bg', 'ro'];
 
   function showItems(data) {
     for (var i = 0; i < s.length; i++) {

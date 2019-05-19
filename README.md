@@ -4,7 +4,21 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Usually in Angular project it is enough to run `ng serve` for a dev server. Then navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+However with Umbraco implementation you should:
+
+1. Clone the repository from Github using this link:
+
+https://github.com/ituraj/umbraco-unibrew.git
+
+2. Copy Environment files that we attached in the PDF into environment folder.
+
+3. Run `ng build` in the terminal.
+
+4. When it's compiled run `node server.js`.
+
+5. Open Google Chrome browser and navigate to `http://127.0.0.1:3001`.
 
 ## Code scaffolding
 
