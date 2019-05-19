@@ -16,7 +16,7 @@
           name="companyName"
           #companyName="ngModel"
           [(ngModel)]="service.formData.companyName"
-          placeholder="Company Name"
+          placeholder="{{ 'companyName' | translate }}"
           required
         />
       </mat-form-field>
@@ -35,7 +35,7 @@
           name="trailerNumber"
           #trailerNumber="ngModel"
           [(ngModel)]="service.formData.trailerNumber"
-          placeholder="Trailer Number"
+          placeholder="{{ 'trailerNumber' | translate }}"
           required
         />
       </mat-form-field>
@@ -55,7 +55,7 @@
           name="arrivalTime"
           #arrivalTime="ngModel"
           [(ngModel)]="service.formData.arrivalTime"
-          placeholder="Arrival Time"
+          placeholder="{{ 'arrivalTime' | translate }}"
           required
         />
       </mat-form-field>
@@ -74,7 +74,7 @@
           name="transportNumber"
           #transportNumber="ngModel"
           [(ngModel)]="service.formData.transportNumber"
-          placeholder="Transport Number"
+          placeholder="{{ 'transportNumber' | translate }}"
           required
           type="number"
         />
@@ -94,7 +94,7 @@
           name="destination"
           #destination="ngModel"
           [(ngModel)]="service.formData.destination"
-          placeholder="Destination"
+          placeholder="{{ 'destination' | translate }}"
           required
         />
       </mat-form-field>
@@ -112,7 +112,7 @@
           name="fullName"
           #fullName="ngModel"
           [(ngModel)]="service.formData.fullName"
-          placeholder="Full Name"
+          placeholder="{{ 'fullName' | translate }}"
           required
         />
       </mat-form-field>

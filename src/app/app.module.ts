@@ -32,13 +32,13 @@ import { environment } from 'src/environments/environment';
 
 import { DriverService } from './shared/driver.service';
 
+// Print
+import { NgxPrintModule } from 'ngx-print';
+
 // Components
 
 import { AppComponent } from './app.component';
 import { FlagsComponent } from './flags/flags.component';
-import { ArrivalComponent } from './arrival/arrival.component';
-import { DepartureComponent } from './departure/departure.component';
-import { PrintComponent } from './print/print.component';
 import { SecondaryFormComponent } from './secondary-form/secondary-form.component';
 import { DriverListComponent } from './secondary-form/driver-list/driver-list.component';
 import { DriverComponent } from './secondary-form/driver/driver.component';
@@ -51,10 +51,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { DragDropComponent } from './drag-drop/drag-drop.component';
-import { QuizComponent } from './quiz/quiz.component';
-import { ResultComponent } from './result/result.component';
-import { QuizIntroComponent } from './quiz-intro/quiz-intro.component';
 import { MainFormComponent } from './main-form/main-form.component';
 import { PrintLayoutComponent } from './print-layout/print-layout.component';
 
@@ -67,16 +63,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   declarations: [
     AppComponent,
     FlagsComponent,
-    ArrivalComponent,
-    DepartureComponent,
-    PrintComponent,
     SecondaryFormComponent,
     DriverListComponent,
     DriverComponent,
-    DragDropComponent,
-    QuizComponent,
-    ResultComponent,
-    QuizIntroComponent,
     MainFormComponent,
     PrintLayoutComponent
   ],
@@ -101,6 +90,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MatStepperModule,
     DragDropModule,
     HttpClientModule,
+    NgxPrintModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

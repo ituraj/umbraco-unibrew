@@ -1,3 +1,10 @@
+.secondaryForm-wrapper {
+  padding: 5rem;
+}
+.padding {
+  padding-right: 2rem;
+  align-self: center;
+}
 .form-container {
   display: grid;
   grid-template-columns: 4fr 8fr;

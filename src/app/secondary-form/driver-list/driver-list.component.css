@@ -6,16 +6,29 @@
 thead {
   background-color: #25ae88;
   color: #efefef;
+  padding: 4rem;
+}
+thead th:first-child,
+tbody tr td:first-child {
+  padding-left: 3rem;
+}
+
+thead th:last-child,
+tbody tr td:last-child {
+  padding-right: 3rem;
 }
 
 th {
   font-weight: 400;
-  font-size: 1.4rem;
+  font-size: 1rem;
 }
 
 th,
 td {
-  padding: 1rem 2rem;
+  padding: 1rem 0.75rem;
+}
+th {
+  padding: 2rem 0.75rem;
 }
 
 td {

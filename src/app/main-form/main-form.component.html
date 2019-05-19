@@ -1,130 +1,383 @@
-<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-  <mat-horizontal-stepper
-    #linearHorizontalStepper="matHorizontalStepper"
-    formArrayName="formArray"
-    [linear]="false"
-  >
-    <mat-step formGroupName="0" [stepControl]="formArray?.get([0])">
-      <section class=" section">
-        <button class="arrow back" routerLink="/" alt="previous step">
-          &#10132;
-        </button>
-        <article>
-          <h2>{{ 'safety' | translate }}</h2>
-          <div class="safety-container">
-            <img
-              src="../../assets/svg/worker.svg"
-              class="worker"
-              alt="worker"
-            />
-            <section class="safety-items">
-              <div class="item-container" *ngFor="let item of safetyItems">
-                <img src="{{ item.img }}" class="safety-item" />
-                <mat-button-toggle-group
-                  aria-label="Select an option"
-                  formControlName="{{ item.formControlName }}"
+<main>
+  <form [formGroup]="formGroup">
+    <mat-horizontal-stepper
+      #stepper
+      #linearHorizontalStepper="matHorizontalStepper"
+      formArrayName="formArray"
+      [linear]="false"
+    >
+      <mat-step formGroupName="0" [stepControl]="formArray?.get([0])">
+        <section class="section-mod">
+          <button class="arrow back" routerLink="/" alt="previous step">
+            &#10132;
+          </button>
+          <article class="form-group1">
+            <h2>{{ 'chooseForm' | translate }}</h2>
+            <mat-button-toggle-group
+              aria-label="Select an option"
+              formControlName="formTypeFormCtrl"
+              class="mat-button-wrapper"
+            >
+              <mat-button-toggle value="main-form">
+                <button
+                  mat-flat-button
+                  color="primary"
+                  matStepperNext
+                  type="button"
+                  alt="next step"
                 >
-                  <mat-button-toggle value="yes">
-                    <i class="material-icons" alt="yes">check_circle</i>
-                  </mat-button-toggle>
-                  <mat-button-toggle value="no">
-                    <i class="no material-icons" alt="no">cancel</i>
-                  </mat-button-toggle>
-                </mat-button-toggle-group>
-              </div>
-            </section>
-          </div>
-        </article>
-        <button matStepperNext type="button" class="arrow" alt="next step">
-          &#10132;
-        </button>
-      </section>
-    </mat-step>
+                  {{ 'orderTreatment' | translate }}
+                </button>
+              </mat-button-toggle>
+              <mat-button-toggle
+                value="secondary-form"
+                routerLink="/drivers-register"
+              >
+                <button mat-flat-button color="primary">
+                  {{ 'driversRegister' | translate }}
+                </button>
+              </mat-button-toggle>
+            </mat-button-toggle-group>
+          </article>
+        </section>
+      </mat-step>
 
-    <mat-step formGroupName="1" [stepControl]="formArray?.get([1])">
-      <section class="section">
-        <button matStepperPrevious class="arrow back" alt="previous step">
-          &#10132;
-        </button>
-        <article>
-          <h2>{{ 'transportation' | translate }}</h2>
-          <div class="safety-container">
-            <mat-form-field>
-              <mat-label>{{ 'transportNumber' | translate }}</mat-label>
-              <input
-                matInput
-                formControlName="transportationNumberFormCtrl"
-                required
+      <mat-step formGroupName="1" [stepControl]="formArray?.get([1])">
+        <section class="section">
+          <button class="arrow back" matStepperPrevious alt="previous step">
+            &#10132;
+          </button>
+          <article>
+            <h2>{{ 'safety' | translate }}</h2>
+            <div class="safety-container">
+              <img
+                src="../../assets/svg/worker.svg"
+                class="worker"
+                alt="worker"
               />
-              <mat-error>{{ 'required' | translate }}</mat-error>
-            </mat-form-field>
-            <mat-form-field>
-              <mat-label>{{ 'trailerNumber' | translate }}</mat-label>
-              <input
-                matInput
-                formControlName="trailerNumberFormCtrl"
-                required
-              />
-              <mat-error>{{ 'required' | translate }}</mat-error>
-            </mat-form-field>
-          </div>
-        </article>
-        <button matStepperNext type="button" class="arrow" alt="next step">
-          &#10132;
-        </button>
-      </section>
-    </mat-step>
+              <section class="safety-items">
+                <div class="item-container" *ngFor="let item of safetyItems">
+                  <img src="{{ item.img }}" class="safety-item" />
+                  <mat-button-toggle-group
+                    aria-label="Select an option"
+                    formControlName="{{ item.formControlName }}"
+                  >
+                    <mat-button-toggle value="yes">
+                      <i class="material-icons" alt="yes">check_circle</i>
+                    </mat-button-toggle>
+                    <mat-button-toggle value="no">
+                      <i class="no material-icons" alt="no">cancel</i>
+                    </mat-button-toggle>
+                  </mat-button-toggle-group>
+                </div>
+              </section>
+            </div>
+          </article>
+          <button matStepperNext type="button" class="arrow" alt="next step">
+            &#10132;
+          </button>
+        </section>
+      </mat-step>
 
-    <mat-step formGroupName="2" [stepControl]="formArray?.get([2])">
-      <section class="section">
-        <button matStepperPrevious class="arrow back" alt="previous step">
-          &#10132;
-        </button>
-        <article class="article">
-          <img
-            class="warehouse-img"
-            src="../../assets/svg/warehouse.svg"
-            alt="warehouse"
-          />
-          <mat-button-toggle-group
-            aria-label="Select an option"
-            formControlName="arrivalDepartureFormCtrl"
-          >
-            <article class="truck-container">
-              <a routerLink="/arrival">
+      <mat-step formGroupName="2" [stepControl]="formArray?.get([2])">
+        <section class="section">
+          <button matStepperPrevious class="arrow back" alt="previous step">
+            &#10132;
+          </button>
+          <article class="article">
+            <h2>{{ 'inspectionPoints' | translate }}</h2>
+
+            <img
+              class="inspected-truck"
+              src="../../assets/svg/truckInspection.svg"
+              alt="truck inspection image"
+            />
+            <h3>{{ 'damageCheck' | translate }}</h3>
+            <mat-button-toggle-group
+              aria-label="Select an option"
+              formControlName="truckInspectionFormCtrl"
+            >
+              <mat-button-toggle value="yes">
+                <i class="material-icons" alt="yes">check_circle</i>
+              </mat-button-toggle>
+              <mat-button-toggle value="no">
+                <i class="no material-icons" alt="no">cancel</i>
+              </mat-button-toggle>
+            </mat-button-toggle-group>
+          </article>
+          <button matStepperNext type="button" class="arrow" alt="next step">
+            &#10132;
+          </button>
+        </section>
+      </mat-step>
+
+      <mat-step formGroupName="3" [stepControl]="formArray?.get([3])">
+        <section class="section">
+          <button matStepperPrevious class="arrow back" alt="previous step">
+            &#10132;
+          </button>
+          <article>
+            <h2>{{ 'transportation' | translate }}</h2>
+            <div class="form-fields-wraper">
+              <mat-form-field>
+                <mat-label>{{ 'fullName' | translate }}</mat-label>
+                <input matInput formControlName="fullNameFormCtrl" required />
+                <mat-error>{{ 'required' | translate }}</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>{{ 'companyName' | translate }}</mat-label>
+                <input
+                  matInput
+                  formControlName="companyNameFormCtrl"
+                  required
+                />
+                <mat-error>{{ 'required' | translate }}</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>{{ 'transportNumber' | translate }}</mat-label>
+                <input
+                  matInput
+                  formControlName="transportationNumberFormCtrl"
+                  required
+                />
+                <mat-error>{{ 'required' | translate }}</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>{{ 'trailerNumber' | translate }}</mat-label>
+                <input
+                  matInput
+                  formControlName="trailerNumberFormCtrl"
+                  required
+                />
+                <mat-error>{{ 'required' | translate }}</mat-error>
+              </mat-form-field>
+            </div>
+          </article>
+          <button matStepperNext type="button" class="arrow" alt="next step">
+            &#10132;
+          </button>
+        </section>
+      </mat-step>
+
+      <mat-step formGroupName="4" [stepControl]="formArray?.get([4])">
+        <section class="section-mod">
+          <button matStepperPrevious class="arrow back" alt="previous step">
+            &#10132;
+          </button>
+          <article class="article">
+            <img
+              class="warehouse-img"
+              src="../../assets/svg/warehouse.svg"
+              alt="warehouse"
+            />
+            <mat-button-toggle-group
+              aria-label="Select an option"
+              formControlName="arrivalDepartureFormCtrl"
+            >
+              <article class="truck-container">
+                <a routerLink="/arrival">
+                  <img
+                    class="truck"
+                    src="../../assets/svg/truckArriving.svg"
+                    alt="truck arriving"
+                  />
+                </a>
+                <mat-button-toggle value="Ankomst">
+                  <button matStepperNext mat-flat-button color="primary">
+                    {{ 'arrival' | translate }}
+                  </button>
+                </mat-button-toggle>
+              </article>
+
+              <article class="truck-container">
+                <a routerLink="/departure">
+                  <img
+                    class="truck"
+                    src="../../assets/svg/truckLeaving.svg"
+                    alt="truck leaving"
+                  />
+                </a>
+                <mat-button-toggle value="Afgang">
+                  <button mat-flat-button color="primary" (click)="move(7)">
+                    {{ 'departure' | translate }}
+                  </button>
+                </mat-button-toggle>
+              </article>
+            </mat-button-toggle-group>
+          </article>
+        </section>
+      </mat-step>
+
+      <mat-step formGroupName="5" [stepControl]="formArray?.get([5])">
+        <section class="section-mod">
+          <button matStepperPrevious class="arrow back" alt="previous step">
+            &#10132;
+          </button>
+          <article class="article">
+            <mat-button-toggle-group
+              aria-label="Select an option"
+              formControlName="arrivalTypeFormCtrl"
+            >
+              <article class="trailer-container">
                 <img
-                  class="truck"
-                  src="../../assets/svg/truckArriving.svg"
+                  class="trailer"
+                  src="../../assets/svg/trailerEmpty.svg"
                   alt="truck arriving"
                 />
-              </a>
-              <mat-button-toggle value="arrival">
-                <button mat-flat-button color="primary">
-                  {{ 'arrival' | translate }}
-                </button>
-              </mat-button-toggle>
-            </article>
+                <mat-button-toggle value="Tøm Trailer">
+                  <button
+                    mat-flat-button
+                    color="primary"
+                    (click)="startPrinting()"
+                  >
+                    {{ 'empty' | translate }}
+                  </button>
+                </mat-button-toggle>
+              </article>
 
-            <article class="truck-container">
-              <a routerLink="/departure">
+              <article class="trailer-container">
+                <a routerLink="/departure">
+                  <img
+                    class="trailer"
+                    src="../../assets/svg/returningGoods.svg"
+                    alt="truck leaving"
+                  />
+                </a>
+                <mat-button-toggle value="Returvarer">
+                  <button matStepperNext mat-flat-button color="primary">
+                    {{ 'return' | translate }}
+                  </button>
+                </mat-button-toggle>
+              </article>
+            </mat-button-toggle-group>
+          </article>
+        </section>
+      </mat-step>
+
+      <mat-step formGroupName="6" [stepControl]="formArray?.get([6])">
+        <section class="section">
+          <button matStepperPrevious class="arrow back" alt="previous step">
+            &#10132;
+          </button>
+          <article>
+            <h2>{{ 'returnWhat' | translate }}</h2>
+            <div class="pallets-wrapper">
+              <div class="pallet-container">
+                <img
+                  class="pallet"
+                  src="../../assets/svg/sodasPallet.svg"
+                  alt="sodas pallets"
+                />
+                <mat-form-field>
+                  <mat-label>{{ 'palletsNumber' | translate }}</mat-label>
+                  <input matInput formControlName="sodasPalletFormCtrl" />
+                </mat-form-field>
+              </div>
+              <div class="pallet-container">
+                <img
+                  class="pallet"
+                  src="../../assets/svg/beerPallet.svg"
+                  alt="beer pallets"
+                />
+                <mat-form-field>
+                  <mat-label>{{ 'palletsNumber' | translate }}</mat-label>
+                  <input matInput formControlName="beerPalletFormCtrl" />
+                </mat-form-field>
+              </div>
+              <div class="pallet-container">
+                <img
+                  class="pallet"
+                  src="../../assets/svg/kegsPallet.svg"
+                  alt="kegs pallets"
+                />
+                <mat-form-field>
+                  <mat-label>{{ 'palletsNumber' | translate }}</mat-label>
+                  <input matInput formControlName="kegsPalletFormCtrl" />
+                </mat-form-field>
+              </div>
+            </div>
+          </article>
+          <button
+            type="button"
+            class="arrow"
+            alt="next step"
+            (click)="startPrinting()"
+          >
+            &#10132;
+          </button>
+        </section>
+      </mat-step>
+
+      <mat-step formGroupName="7" [stepControl]="formArray?.get([7])">
+        <section class="section-mod">
+          <button (click)="move(4)" class="arrow back" alt="previous step">
+            &#10132;
+          </button>
+          <article class="article">
+            <mat-button-toggle-group
+              aria-label="Select an option"
+              formControlName="departureFormCtrl"
+            >
+              <article class="truck-container">
                 <img
                   class="truck"
-                  src="../../assets/svg/truckLeaving.svg"
-                  alt="truck leaving"
+                  src="../../assets/svg/truckLoading.svg"
+                  alt="truck arriving"
                 />
-              </a>
-              <mat-button-toggle value="departure">
-                <button mat-flat-button color="primary">
-                  {{ 'departure' | translate }}
-                </button>
+                <mat-button-toggle value="Læsse">
+                  <button
+                    mat-flat-button
+                    color="primary"
+                    matStepperNext
+                    (click)="startPrinting()"
+                  >
+                    {{ 'load' | translate }}
+                  </button>
+                </mat-button-toggle>
+              </article>
+
+              <article class="truck-container">
+                <a routerLink="/departure">
+                  <img
+                    class="truck"
+                    src="../../assets/svg/truckLeaving.svg"
+                    alt="truck leaving"
+                  />
+                </a>
+                <mat-button-toggle value="Saml Lastet">
+                  <button
+                    mat-flat-button
+                    color="primary"
+                    matStepperNext
+                    (click)="startPrinting()"
+                  >
+                    {{ 'collect' | translate }}
+                  </button>
+                </mat-button-toggle>
+              </article>
+            </mat-button-toggle-group>
+          </article>
+        </section>
+      </mat-step>
+      <mat-step formGroupName="8" [stepControl]="formArray?.get([8])">
+        <section class="print-wraper">
+          <article>
+            <h2>{{ 'print' | translate }}</h2>
+            <mat-button-toggle-group
+              aria-label="Select an option"
+              formControlName="printFormCtrl"
+            >
+              <mat-button-toggle
+                value="print"
+                (click)="onSubmit()"
+                routerLink="/print-layout"
+              >
+                <img src="../../assets/svg/printer.svg" alt="printing form" />
               </mat-button-toggle>
-            </article>
-          </mat-button-toggle-group>
-        </article>
-        <button matStepperNext type="button" class="arrow" alt="next step">
-          &#10132;
-        </button>
-      </section>
-    </mat-step>
-  </mat-horizontal-stepper>
-</form>
+            </mat-button-toggle-group>
+          </article>
+        </section>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </form>
+</main>

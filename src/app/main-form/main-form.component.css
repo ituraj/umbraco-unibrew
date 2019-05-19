@@ -1,3 +1,24 @@
+/* ------------------- Form Group 0 ----------------*/
+
+.form-group1 {
+  height: 100%;
+  width: 100%;
+  /* background-color: pink; */
+}
+
+.mat-button-wrapper {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  width: 100%;
+  height: 80%; /* fallback:  */
+  height: calc(100% - 140px); /* double of h2 hight  */
+  align-content: center;
+  justify-content: center;
+  /* background-color: yellow; */
+}
+
+/* ------------------- Form Group 1 [safety]----------------*/
+
 .safety-container {
   display: grid;
   align-items: center;
@@ -38,22 +59,82 @@
   justify-self: center;
 }
 
-/*---- Safety items[1] ------*/
+/* ------------------- Form Group 2[truck inspection] ----------------*/
 
-.title {
-  text-align: center;
+.inspected-truck {
+  height: 25rem;
 }
+
+/* ------------------- Form Group 3[transportation number] ----------------*/
+
+.form-fields-wraper {
+  display: grid;
+  height: 80%; /* fallback:  */
+  height: calc(100% - 140px); /* double of h2 hight  */
+  justify-items: center;
+  align-content: center;
+  grid-gap: 2rem;
+  grid-template-rows: repeat(3, max-content);
+  /* background-color: aqua; */
+}
+
+/* ------------------- Form Group 4[Arrival | Departure] ----------------*/
 
 .truck-container {
   display: grid;
   justify-items: center;
   grid-template-rows: repeat(2, max-content);
   grid-gap: 5rem;
+  /* background: pink; */
+}
+.warehouse-img {
+  max-width: 50rem;
 }
 
-.warehouse-img {
-  max-width: 500px;
-}
 .truck {
-  height: 75px;
+  height: 9rem;
+}
+
+/* ------------------- Form Group 5[Arrival] ----------------*/
+
+.trailer {
+  height: 20rem;
+}
+.trailer-container {
+  display: grid;
+  justify-items: center;
+  grid-template-rows: repeat(2, max-content);
+  grid-gap: 5rem;
+  padding: 2rem;
+}
+
+/* ------------------- Form Group 5[Arrival->Returning Goods] ----------------*/
+
+.pallet {
+  width: 20rem;
+}
+
+.pallets-wrapper {
+  display: grid;
+  width: 100%;
+  /* background-color: aqua; */
+  grid-template-columns: repeat(3, 1fr);
+  height: calc(100% - 140px);
+  align-items: center;
+  justify-items: center;
+}
+.pallet-container {
+  display: grid;
+  justify-items: center;
+  grid-template-rows: repeat(2, max-content);
+  grid-gap: 2rem;
+  /* background: pink; */
+}
+
+/* ------------------- Form Group 8[Print] ----------------*/
+
+.print-wraper {
+  display: grid;
+  justify-items: center;
+  align-content: center;
 }

@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, VERSION, ViewChild } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
   FormGroup,
   Validators
 } from '@angular/forms';
+import { MainFormService } from 'src/app/shared/main-form.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { MatStepper } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-form',
@@ -12,6 +16,9 @@ import {
   styleUrls: ['./main-form.component.css']
 })
 export class MainFormComponent implements OnInit {
+  @ViewChild('stepper') stepper: MatStepper;
+  ngVersion: string = VERSION.full;
+  matVersion: string = '5.1.0';
   safetyItems = [
     {
       name: 'Safety Glasses',
@@ -60,11 +67,19 @@ export class MainFormComponent implements OnInit {
     return this.formGroup.get('formArray');
   }
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    public service: MainFormService,
+    public firestore: AngularFirestore,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
       formArray: this.formBuilder.array([
+        this.formBuilder.group({
+          formTypeFormCtrl: ['', Validators.required]
+        }),
         this.formBuilder.group({
           glassesFormCtrl: ['', Validators.required],
           headphonesFormCtrl: ['', Validators.required],
@@ -74,11 +89,30 @@ export class MainFormComponent implements OnInit {
           vestFormCtrl: ['', Validators.required]
         }),
         this.formBuilder.group({
+          truckInspectionFormCtrl: ['', Validators.required]
+        }),
+        this.formBuilder.group({
+          fullNameFormCtrl: ['', Validators.required],
+          companyNameFormCtrl: ['', Validators.required],
           transportationNumberFormCtrl: ['', Validators.required],
           trailerNumberFormCtrl: ['', Validators.required]
         }),
         this.formBuilder.group({
           arrivalDepartureFormCtrl: ['', Validators.required]
+        }),
+        this.formBuilder.group({
+          arrivalTypeFormCtrl: ['', Validators.required]
+        }),
+        this.formBuilder.group({
+          sodasPalletFormCtrl: [''],
+          beerPalletFormCtrl: [''],
+          kegsPalletFormCtrl: ['']
+        }),
+        this.formBuilder.group({
+          departureFormCtrl: ['', Validators.required]
+        }),
+        this.formBuilder.group({
+          printFormCtrl: ['', Validators.required]
         })
       ])
     });
@@ -88,12 +122,38 @@ export class MainFormComponent implements OnInit {
       headphonesFormCtrl: ['', Validators.required]
     });
     this.trackingNumbersFormGroup = this.formBuilder.group({
+      fullNameFormCtrl: ['', Validators.required],
       transportationNumberFormCtrl: ['', Validators.required],
       trailerNumberFormCtrl: ['', Validators.required]
     });
   }
+
   onSubmit() {
-    // TODO: Use EventEmitter with form value
     console.log(this.formGroup.value);
+    let data = Object.assign({}, this.formGroup.value);
+    let timeCreated = new Date();
+    const date = timeCreated.getDate();
+    const month = timeCreated.getMonth();
+    const year = timeCreated.getFullYear();
+    const dateString = date + '/' + (month + 1) + '/' + year;
+    const hour = timeCreated.getHours();
+    const minute = timeCreated.getMinutes();
+    const timeString = hour + ':' + minute;
+    if (this.formGroup.value.id == null) {
+      this.firestore
+        .collection('main-form')
+        .add({ data, dateString, timeString, timeCreated });
+    }
+  }
+  move(index: number) {
+    this.stepper.selectedIndex = index;
+  }
+
+  startPrinting() {
+    this.onSubmit();
+    this.move(8);
+    setTimeout(() => {
+      this.router.navigate(['/print-layout']);
+    }, 2000);
   }
 }

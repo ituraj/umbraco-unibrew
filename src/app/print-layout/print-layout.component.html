@@ -1,3 +1,217 @@
-<p>
-  print-layout works!
-</p>
+<main>
+  <div
+    id="print-section"
+    class="print-section"
+    *ngFor="let item of list | slice: -1"
+  >
+    <section class="print-grid">
+      <header class="header-grid">
+        <div><p class="header">Ordrehåndteringsseddel</p></div>
+        <div>
+          <p class="header">
+            Date:
+            <span> {{ item.dateString }}</span>
+            <span> {{ item.timeString }}</span>
+          </p>
+        </div>
+      </header>
+      <section class="section1">
+        <div class="half">
+          <div class="section1-left">
+            <p class="section-title">Udfyldes af chauffør</p>
+            <div class="half">
+              <p class="section-subtitle">Transportnummer</p>
+              <p class="fill">
+                {{ item.data.formArray[3].transportationNumberFormCtrl }}
+              </p>
+            </div>
+            <div class="deliver-no-grid">
+              <p class="section-subtitle">Laveringsnummer</p>
+              <p class="section-subtitle">Antal</p>
+            </div>
+          </div>
+          <div class="section1-right">
+            <p class="section-title">Udfyldes af bryggeri</p>
+            <div class="section1-col-wraper">
+              <div class="section-subtitle"><p>Rampe</p></div>
+              <div class="section-subtitle"><p>Paller v Kontor</p></div>
+              <div class="section-subtitle"><p>Lager</p></div>
+              <div class="section-subtitle"><p>Port</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="empty-rows">
+          <div class="empty-row">
+            <p>1</p>
+            <p>SOE373209</p>
+            <p>5</p>
+            <p>7A</p>
+            <p class="fill">{{ item.data.formArray[6].beerPalletFormCtrl }}</p>
+            <p>sodavand paller</p>
+            <p>7</p>
+          </div>
+          <div class="empty-row">
+            <p>2</p>
+            <p>LPC269520</p>
+            <p>8</p>
+            <p>2</p>
+            <p class="fill">{{ item.data.formArray[6].sodasPalletFormCtrl }}</p>
+            <p>ØL PALLER</p>
+            <p>2B</p>
+          </div>
+          <div class="empty-row">
+            <p>3</p>
+            <p>AEI402918</p>
+            <p>3</p>
+            <p>4</p>
+            <p class="fill">{{ item.data.formArray[6].kegsPalletFormCtrl }}</p>
+            <p>TØNDE PALLER</p>
+            <p>4B</p>
+          </div>
+          <div class="empty-row">
+            <p>4</p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="empty-row">
+            <p>5</p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="empty-row">
+            <p>6</p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="empty-row">
+            <p></p>
+            <p>Insp& Leaset af:</p>
+            <p class="fill">{{ item.data.formArray[3].fullNameFormCtrl }}</p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section2">
+        <div class="section2-left">
+          <div class="section-subtitle">Er traileren tjekket for skade?</div>
+          <div class="half">
+            <p class="section-subtitle">Auto-nr</p>
+            <p class="fill">
+              {{ item.data.formArray[3].trailerNumberFormCtrl }}
+            </p>
+          </div>
+        </div>
+
+        <div class="section2-right">
+          <div class="half right-fix">
+            <p class="section-subtitle">Ankomst | Afgang</p>
+            <p class="fill">
+              {{ item.data.formArray[4].arrivalDepartureFormCtrl }}
+            </p>
+          </div>
+          <div class="wraper right-fix">
+            <p class="section-subtitle">Ved eksportleverencecer - Kryds Af</p>
+          </div>
+          <div class="half">
+            <div class="half">
+              <p class="section-subtitle">Trailer OK</p>
+              <p class="fill">
+                {{ item.data.formArray[2].truckInspectionFormCtrl }}
+              </p>
+            </div>
+            <div class="half right-fix">
+              <p class="section-subtitle">Skal Køres ud Først</p>
+              <p>JA</p>
+            </div>
+          </div>
+          <div class="half">
+            <div class="half">
+              <p class="section-subtitle">Kan Sidelæse</p>
+              <p></p>
+            </div>
+            <div class="half right-fix">
+              <p class="section-subtitle">På Vej Ud</p>
+              <p></p>
+            </div>
+          </div>
+          <div class="half bottom-fix">
+            <div class="half">
+              <p class="section-subtitle">Sikker- hedsko</p>
+              <p class="fill">{{ item.data.formArray[1].bootsFormCtrl }}</p>
+            </div>
+            <div class="half right-fix">
+              <p class="section-subtitle">Star På Gulvet</p>
+              <p></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section3">
+        <div class="section3-left half-rows">
+          <div class="half">
+            <div class="section-subtitle"><p>Firmanavn</p></div>
+            <div class="alignment-fix">
+              <p class="fill">
+                {{ item.data.formArray[3].companyNameFormCtrl }}
+              </p>
+            </div>
+          </div>
+          <div class="section-subtitle"><p>Diverse Sonstiges</p></div>
+        </div>
+        <div class="section3-right half-rows">
+          <div class="half-rows">
+            <div class="half">
+              <p class="section-subtitle">Planlagt Afgang</p>
+              <p>29/5/2019 10:10</p>
+            </div>
+            <div class="half">
+              <p class="section-subtitle">Faktisk Afgang</p>
+              <p>29/5/2019 12:45</p>
+            </div>
+          </div>
+          <div class="half">
+            <div class="queue-grid">
+              <p></p>
+              <p></p>
+              <p></p>
+              <p></p>
+            </div>
+            <div class="queue-grid-mod">
+              <p class="section-subtitle">Kø Nummer</p>
+              <p></p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </div>
+
+  <button
+    [printStyle]="{ p: { color: 'red' }, h2: { border: 'solid 1px' } }"
+    [useExistingCss]="true"
+    mat-flat-button
+    color="primary"
+    printSectionId="print-section"
+    ngxPrint
+    #myDiv
+  >
+    PRINT
+  </button>
+</main>
